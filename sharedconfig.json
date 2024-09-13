@@ -1,0 +1,9 @@
+{
+  "Kafka": {
+    "Host": "localhost:9092",
+    "Topic": "log-date",
+    "Group": "log-date-group",
+    "Producer-Time": 2,
+    "Consumer-Time": 3
+  }
+}
