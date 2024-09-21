@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Endpoint.src;
+using Endpoint.src.Contracts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -10,7 +11,9 @@ internal class Program
     private static async Task Main(string[] args)
     {
         var service = Startup.Init();
+
         var runProgram = service.GetService<IProgram>();
+
         await runProgram.Run();
     }
 }

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Endpoint.src.Contracts;
 
-namespace Endpoint.src
+namespace Endpoint.src.Services
 {
     public class ConsoleService : IConsoleService
     {
@@ -25,7 +26,7 @@ namespace Endpoint.src
 
         public void Write(string value)
         {
-           Console.Write(value);
+            Console.Write(value);
         }
 
         public void WriteLine(string value)

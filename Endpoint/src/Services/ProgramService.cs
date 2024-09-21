@@ -1,11 +1,12 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Endpoint.src.Contracts;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Endpoint.src
+namespace Endpoint.src.Services
 {
     public class ProgramService : IProgram
     {
@@ -29,7 +30,7 @@ namespace Endpoint.src
             number = _.ReadLine();
 
             if (!string.IsNullOrEmpty(number))
-            {                  
+            {
                 _.WriteLine("Respuesta del Servidor: ");
                 _.WriteLine(await _request.GetRequest(number));
             }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Endpoint.src.Contracts;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Endpoint.src
+namespace Endpoint.src.Services
 {
     public class RequestService : IRequestService
     {
@@ -23,9 +24,9 @@ namespace Endpoint.src
             string api = _config.GetSection("EndPoint")["Api"];
             string noApi = _config.GetSection("EndPoint")["Option"];
 
-            if (!int.TryParse(option, out int result) || (result < 1 || result > Convert.ToInt32(noApi)))
+            if (!int.TryParse(option, out int result) || result < 1 || result > Convert.ToInt32(noApi))
                 return $"El valor {option} no es número entero entre 1 y {noApi}";
-          
+
             string end = _config.GetSection("EndPoint")[$"End{option}"];
 
             HttpClient client = new HttpClient();
@@ -49,7 +50,7 @@ namespace Endpoint.src
             {
                 return $"An Exception was thrown: {ex.Message}";
             }
-           
+
         }
     }
 }

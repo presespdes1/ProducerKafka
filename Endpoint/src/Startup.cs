@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Endpoint.src.Contracts;
+using Endpoint.src.Services;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -16,6 +18,7 @@ namespace Endpoint.src
             var builderConf = new ConfigurationBuilder();
             builderConf.AddJsonFile("appsettings.json");
             IConfiguration configuration = builderConf.Build();
+            
             //Srvices
             var services = new ServiceCollection();
             services.AddSingleton<IRequestService>(provider =>
@@ -23,12 +26,14 @@ namespace Endpoint.src
                 return new RequestService(configuration);
             });
             services.AddScoped<IConsoleService, ConsoleService>();
+
             services.AddScoped<IProgram>(provider => 
             { 
                 var request = provider.GetService<IRequestService>();
                 var console = provider.GetService<IConsoleService>();
                 return new ProgramService(console, request, configuration);
             });
+            
             return services.BuildServiceProvider();
         }
 

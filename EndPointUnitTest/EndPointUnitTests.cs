@@ -1,5 +1,4 @@
-﻿using Endpoint.src;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,11 +12,13 @@ using Newtonsoft.Json;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.VisualBasic.FileIO;
 using Microsoft.Extensions.Configuration;
+using Endpoint.src.Contracts;
+using Endpoint.src.Services;
 
 
 namespace EndPointUnitTest
 {
-    
+
     public class EndPointUnitTests
     {
         private const string ResponseHeaderMessage = "Respuesta del Servidor: ";

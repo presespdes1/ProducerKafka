@@ -22,7 +22,7 @@ namespace Exercise.src
             {
                 BootstrapServers = _config["Kafka:Host"],
                 AllowAutoCreateTopics = true,
-                Acks = Acks.All
+                Acks = Acks.All,               
                
             };
 
