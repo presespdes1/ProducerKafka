@@ -1,5 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using ConsumerDate.src;
+using ConsumerDate.src.Contracts;
 using Microsoft.Extensions.Hosting;
 
 public class EventConsumerJob : BackgroundService

@@ -1,4 +1,4 @@
-﻿namespace ProducerDate.src
+﻿namespace ProducerDate.src.Contracts
 {
     public interface IHash
     {

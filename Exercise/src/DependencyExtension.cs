@@ -1,4 +1,6 @@
-﻿using ProducerDate.src;
+﻿using ProducerDate.src.Contracts;
+using ProducerDate.src.Services;
+using ProducerDate.src.Producers;
 
 namespace Exercise.src
 {
@@ -9,11 +11,11 @@ namespace Exercise.src
             services.AddScoped<IHash, Compute256sha>();
             services.AddSingleton<IProducerDate> (provider => 
             {
-                var logger = provider.GetService<ILogger<ProducerDate>>();
+                var logger = provider.GetService<ILogger<Producer>>();
 
                 var hash = provider.GetService<IHash>();
 
-                return new ProducerDate(config, logger, hash);
+                return new Producer(config, logger, hash);
             });
             
             return services;

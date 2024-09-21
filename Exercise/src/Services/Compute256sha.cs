@@ -1,7 +1,8 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
+using ProducerDate.src.Contracts;
 
-namespace ProducerDate.src
+namespace ProducerDate.src.Services
 {
     public class Compute256sha : IHash
     {

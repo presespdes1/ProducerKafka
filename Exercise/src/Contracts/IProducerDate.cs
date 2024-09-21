@@ -1,6 +1,6 @@
 ﻿using System.Reflection.Metadata.Ecma335;
 
-namespace Exercise.src
+namespace ProducerDate.src.Contracts
 {
     public interface IProducerDate
     {

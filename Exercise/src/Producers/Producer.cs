@@ -1,16 +1,16 @@
 ﻿
 using Confluent.Kafka;
-using ProducerDate.src;
+using ProducerDate.src.Contracts;
 
-namespace Exercise.src
+namespace ProducerDate.src.Producers
 {
-    public class ProducerDate : IProducerDate
+    public class Producer : IProducerDate
     {
         private readonly IConfiguration _config;
-        private readonly ILogger<ProducerDate> _logger;
+        private readonly ILogger<Producer> _logger;
         private readonly IHash _hash;
- 
-        public ProducerDate(IConfiguration config, ILogger<ProducerDate> logger, IHash hash) 
+
+        public Producer(IConfiguration config, ILogger<Producer> logger, IHash hash)
         {
             _config = config;
             _logger = logger;
@@ -22,8 +22,12 @@ namespace Exercise.src
             {
                 BootstrapServers = _config["Kafka:Host"],
                 AllowAutoCreateTopics = true,
-                Acks = Acks.All,               
-               
+                Acks = Acks.All,
+                //SslKeystoreLocation = "D:\\Works\\Kafka\\keys\\kafka-broker-keystore.p12",
+                //SslKeystorePassword = "export123",
+                //SslKeyPassword = "key123",
+                //SslEndpointIdentificationAlgorithm = SslEndpointIdentificationAlgorithm.None,
+                //SecurityProtocol = SecurityProtocol.Ssl
             };
 
             using var producer = new ProducerBuilder<Null, string>(config).Build();
@@ -34,7 +38,7 @@ namespace Exercise.src
                     new Message<Null, string> { Value = sha256DateMessage },
                     cancelToken);
 
-                _logger.LogInformation($"Mensaje enviado: {response.Value}, Offset: {response.Offset}"); 
+                _logger.LogInformation($"Mensaje enviado: {response.Value}, Offset: {response.Offset}");
             }
             catch (ProduceException<Null, string> ex)
             {

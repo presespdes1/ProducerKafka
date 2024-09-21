@@ -1,5 +1,5 @@
 using Exercise.src;
-using ProducerDate.src;
+using ProducerDate.src.Jobs;
 
 internal class Program
 {

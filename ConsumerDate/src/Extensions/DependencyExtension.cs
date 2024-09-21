@@ -1,14 +1,12 @@
 ﻿using Confluent.Kafka;
+using ConsumerDate.src.Contracts;
+using ConsumerDate.src.Consumers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ConsumerDate.src
+
+namespace ConsumerDate.src.Extensions
 {
     public static class DependencyExtension
     {
@@ -16,9 +14,9 @@ namespace ConsumerDate.src
         {
             services.AddSingleton<IConsumerDate>(provider =>
             {
-                var logger = provider.GetService<ILogger<ConsumerDate>>();
+                var logger = provider.GetService<ILogger<Consumer>>();
 
-                return new ConsumerDate(configuration, logger);
+                return new Consumer(configuration, logger);
             });
 
             return services;

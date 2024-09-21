@@ -1,4 +1,5 @@
 ﻿using Confluent.Kafka;
+using ConsumerDate.src.Contracts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
@@ -8,14 +9,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace ConsumerDate.src
+namespace ConsumerDate.src.Consumers
 {
-    public class ConsumerDate : IConsumerDate
+    public class Consumer : IConsumerDate
     {
         private readonly IConfiguration _config;
-        private readonly ILogger<ConsumerDate> _logger;
+        private readonly ILogger<Consumer> _logger;
 
-        public ConsumerDate(IConfiguration config, ILogger<ConsumerDate> logger)
+        public Consumer(IConfiguration config, ILogger<Consumer> logger)
         {
             _config = config;
             _logger = logger;
@@ -27,7 +28,7 @@ namespace ConsumerDate.src
                 BootstrapServers = _config["Kafka:Host"],
                 GroupId = _config["Kafka:Group"],
                 AutoOffsetReset = AutoOffsetReset.Earliest,
-              
+
             };
 
             using var consumer = new ConsumerBuilder<Ignore, string>(config).Build();
